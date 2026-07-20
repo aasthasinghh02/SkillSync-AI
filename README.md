@@ -1,26 +1,81 @@
-# ResumeIQ AI
+# SkillSync-AI
 
-An AI-powered Resume Analyzer built with Python and Streamlit.
+SkillSync-AI is an AI-powered Resume Analyzer that helps candidates evaluate how well their resumes match a job description using a locally hosted Large Language Model (LLM).
 
 ## Features
 
-- Upload PDF/DOCX resumes
-- Extract resume text
-- Detect contact information
-- Extract skills
-- Resume–Job Description matching
-- AI-powered ATS analysis (OpenAI)
-- Resume improvement suggestions
+- Upload PDF and DOCX resumes
+- Automatic resume text extraction
+- Contact information extraction
+- Skill detection
+- Resume parsing using Local LLM (Ollama)
+- ATS Score generation
+- Resume vs Job Description comparison
+- Missing Skills Identification
+- AI-powered Resume Improvement Suggestions
+- Interactive Streamlit Dashboard
+
+---
 
 ## Tech Stack
 
+### Backend
+
 - Python
 - Streamlit
-- OpenAI API
+
+### AI
+
+- Ollama
+- Llama 3.1
+
+### Document Processing
+
 - pdfplumber
 - python-docx
-- scikit-learn
 
-## Status
+### NLP
 
-🚧 Currently under development.
+- Scikit-Learn
+
+### Version Control
+
+- Git
+- GitHub
+
+---
+
+## Project Structure
+
+```text
+SkillSync-AI
+│
+├── ai
+├── parser
+├── utils
+├── tests
+├── uploads
+├── reports
+└── app.py
+```
+
+---
+
+## Current Status
+
+🚧 Active Development
+
+Upcoming Features
+
+- AI Resume Parsing
+- ATS Match Score
+- Missing Skill Detection
+- Resume Summary
+- Downloadable Report
+- Interactive Dashboard
+
+---
+
+## Author
+
+Aastha Singh
