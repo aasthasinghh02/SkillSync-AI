@@ -20,4 +20,3 @@ MongoDB
 result = analyze_resume(resume, job)
 
 print(result)
- 
