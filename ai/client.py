@@ -1,20 +1,41 @@
-import os
+import json
+import requests
 
-from dotenv import load_dotenv
-from openai import OpenAI
-
-
-load_dotenv()
-
-api_key = os.getenv("OPENAI_API_KEY")
-
-
-if not api_key:
-    raise ValueError(
-        "OPENAI_API_KEY missing. Check your .env file."
-    )
-
-
-client = OpenAI(
-    api_key=api_key
+from config import (
+    OLLAMA_HOST,
+    OLLAMA_MODEL,
 )
+
+
+def generate_response(prompt: str) -> dict:
+    """
+    Send a prompt to Ollama and return JSON.
+    """
+
+    url = f"{OLLAMA_HOST}/api/generate"
+
+    payload = {
+        "model": OLLAMA_MODEL,
+        "prompt": prompt,
+        "stream": False
+    }
+
+    try:
+
+        response = requests.post(
+            url,
+            json=payload,
+            timeout=120
+        )
+
+        response.raise_for_status()
+
+        result = response.json()
+
+        return result
+
+    except requests.exceptions.RequestException as e:
+
+        raise Exception(
+            f"Ollama Error: {e}"
+        )
