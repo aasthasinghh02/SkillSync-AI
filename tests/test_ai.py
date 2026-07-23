@@ -1,4 +1,4 @@
-from ai.analyzer import analyze_resume
+from ai.ats_analyzer import analyze_resume
 
 resume = """
 Python

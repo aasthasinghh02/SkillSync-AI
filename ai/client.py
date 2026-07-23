@@ -38,4 +38,4 @@ def generate_response(prompt: str) -> dict:
 
         raise Exception(
             f"Ollama Error: {e}"
-        )
+        )   
