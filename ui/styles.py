@@ -1,378 +1,207 @@
 import streamlit as st
 
-
 def load_css():
+
     st.markdown(
         """
-<style>
+        <style>
 
-/* ==========================================================
-   GLOBAL
-========================================================== */
 
-html,
-body,
-[class*="css"]{
-    font-family: "Segoe UI", sans-serif;
-}
+        /* =========================
+           GLOBAL APP
+        ========================= */
 
 
-/* Main App */
+        .stApp {
 
-.main{
-    background:#f8fafc;
-}
+            background:
+            linear-gradient(
+                135deg,
+                #0f172a,
+                #111827
+            );
 
+        }
 
-/* Remove Streamlit Branding */
 
-#MainMenu{
-    visibility:hidden;
-}
 
-footer{
-    visibility:hidden;
-}
+        /* =========================
+           SIDEBAR
+        ========================= */
 
-header{
-    visibility:hidden;
-}
 
+        [data-testid="stSidebar"] {
 
-/* ==========================================================
-   HEADINGS
-========================================================== */
 
-h1{
+            background:
+            linear-gradient(
+                180deg,
+                #020617,
+                #111827
+            );
 
-    color:#0f172a;
+        }
 
-    font-weight:700;
 
-    letter-spacing:-0.5px;
 
-}
+        [data-testid="stSidebar"] * {
 
-h2{
+            color:
+            #e5e7eb !important;
 
-    color:#1e293b;
+        }
 
-    font-weight:600;
 
-}
 
-h3{
+        /* Sidebar headings */
 
-    color:#334155;
+        [data-testid="stSidebar"] h1,
+        [data-testid="stSidebar"] h2,
+        [data-testid="stSidebar"] h3 {
 
-    font-weight:600;
+            color:white !important;
 
-}
+        }
 
 
-/* ==========================================================
-   METRIC CARD
-========================================================== */
 
-.metric-card{
+        /* =========================
+           HEADINGS
+        ========================= */
 
-    background:white;
 
-    border-radius:18px;
+        h1 {
 
-    padding:25px;
+            font-size:
+            42px !important;
 
-    border:1px solid #e2e8f0;
+            font-weight:
+            800 !important;
 
-    box-shadow:
+            color:
+            #ffffff !important;
 
-        0px 10px 25px rgba(15,23,42,.05);
+        }
 
-    transition:.3s;
 
-    margin-bottom:15px;
 
-}
+        h2 {
 
+            color:
+            #f8fafc !important;
 
-.metric-card:hover{
+        }
 
-    transform:translateY(-3px);
 
-}
 
+        h3 {
 
-.metric-title{
+            color:
+            #e2e8f0 !important;
 
-    color:#64748b;
+        }
 
-    font-size:15px;
 
-    font-weight:600;
 
-}
+        p, li {
 
+            color:
+            #cbd5e1 !important;
 
-.metric-value{
+        }
 
-    font-size:42px;
 
-    font-weight:700;
 
-    color:#0f172a;
+        /* =========================
+           CARDS
+        ========================= */
 
-    margin-top:10px;
 
-}
+        div[data-testid="stVerticalBlock"] > div {
 
+            border-radius:
+            16px;
 
-/* ==========================================================
-   SECTION CARD
-========================================================== */
+        }
 
-.section-card{
 
-    background:white;
 
-    border-radius:18px;
+        /* =========================
+           INPUT BOXES
+        ========================= */
 
-    padding:24px;
 
-    border:1px solid #e2e8f0;
+        textarea {
 
-    margin-top:18px;
+            background:
+            #1e293b !important;
 
-    margin-bottom:18px;
+            color:white !important;
 
-    box-shadow:
+            border-radius:
+            12px !important;
 
-        0px 8px 20px rgba(15,23,42,.04);
+        }
 
-}
 
 
-/* ==========================================================
-   SUMMARY CARD
-========================================================== */
+        input {
 
-.summary-card{
+            background:
+            #1e293b !important;
 
-    background:#eff6ff;
+            color:white !important;
 
-    border-left:6px solid #2563eb;
+        }
 
-    border-radius:14px;
 
-    padding:18px;
 
-    color:#1e293b;
+        /* =========================
+           BUTTON
+        ========================= */
 
-    margin-top:10px;
 
-}
+        .stButton button {
 
 
-/* ==========================================================
-   SKILL TAGS
-========================================================== */
+            background:
+            linear-gradient(
+                90deg,
+                #ff4b4b,
+                #ff758c
+            );
 
-.skill-tag{
 
-    display:inline-block;
+            color:white;
 
-    background:#2563eb;
+            font-weight:
+            700;
 
-    color:white;
 
-    padding:
+            border-radius:
+            12px;
 
-        8px 16px;
 
-    margin:
+            height:
+            50px;
 
-        6px 6px 6px 0;
+        }
 
-    border-radius:30px;
 
-    font-size:14px;
 
-    font-weight:600;
+        .stButton button:hover {
 
-}
 
+            transform:
+            scale(1.02);
 
-/* ==========================================================
-   SUCCESS TAG
-========================================================== */
 
-.success-tag{
+        }
 
-    display:inline-block;
 
-    background:#dcfce7;
 
-    color:#166534;
+        </style>
 
-    padding:10px 18px;
-
-    margin-bottom:8px;
-
-    border-radius:12px;
-
-    width:100%;
-
-}
-
-
-/* ==========================================================
-   WARNING TAG
-========================================================== */
-
-.warning-tag{
-
-    display:inline-block;
-
-    background:#fff7ed;
-
-    color:#9a3412;
-
-    padding:10px 18px;
-
-    margin-bottom:8px;
-
-    border-radius:12px;
-
-    width:100%;
-
-}
-
-
-/* ==========================================================
-   ROADMAP CARD
-========================================================== */
-
-.roadmap-card{
-
-    background:white;
-
-    border-radius:16px;
-
-    border-left:6px solid #2563eb;
-
-    padding:18px;
-
-    margin-bottom:15px;
-
-    border:1px solid #e2e8f0;
-
-}
-
-
-/* ==========================================================
-   DOWNLOAD BUTTON
-========================================================== */
-
-.stDownloadButton button{
-
-    width:100%;
-
-    border-radius:10px;
-
-    font-weight:600;
-
-}
-
-
-/* ==========================================================
-   PRIMARY BUTTON
-========================================================== */
-
-.stButton button{
-
-    border-radius:10px;
-
-    font-weight:600;
-
-    height:50px;
-
-}
-
-
-/* ==========================================================
-   FILE UPLOADER
-========================================================== */
-
-section[data-testid="stFileUploader"]{
-
-    border-radius:12px;
-
-}
-
-
-/* ==========================================================
-   TEXT AREA
-========================================================== */
-
-textarea{
-
-    border-radius:10px !important;
-
-}
-
-
-/* ==========================================================
-   SIDEBAR
-========================================================== */
-
-section[data-testid="stSidebar"]{
-
-    background:#ffffff;
-
-    border-right:1px solid #e2e8f0;
-
-}
-
-
-/* ==========================================================
-   DIVIDER
-========================================================== */
-
-hr{
-
-    border:0;
-
-    height:1px;
-
-    background:#e2e8f0;
-
-}
-
-
-/* ==========================================================
-   SCROLLBAR
-========================================================== */
-
-::-webkit-scrollbar{
-
-    width:8px;
-
-}
-
-::-webkit-scrollbar-thumb{
-
-    background:#cbd5e1;
-
-    border-radius:10px;
-
-}
-
-::-webkit-scrollbar-thumb:hover{
-
-    background:#94a3b8;
-
-}
-
-</style>
-""",
-        unsafe_allow_html=True,
+        """,
+        unsafe_allow_html=True
     )
